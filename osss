@@ -160,6 +160,64 @@ Submit the string in the file as the answer.
 
 
 
+additional sql 
+
+
+Question 12: SQL Injection Attack
+Task: Perform an SQL injection attack on the target web application cinema.cehorg.com to extract the password of a user named Sarah. You already have credentials for another user, Karen, with the password "computer".
+
+Steps:
+
+Understand SQL Injection: SQL injection involves inserting or "injecting" a malicious SQL query via the input data from the client to the application. A successful attack can read sensitive data from the database, modify database data, execute administration operations, and sometimes even gain administrative access to the server.
+
+Access the Web Application:
+
+Open a web browser on your Parrot OS.
+Go to cinema.cehorg.com.
+Login with Existing Credentials:
+
+Use the credentials Karen/computer to log in. This step helps to understand the application's structure and find possible injection points.
+Identify Potential Injection Points:
+
+Look for input fields, such as search boxes, login forms, or URL parameters, where user input might directly interact with the database.
+For example, a URL like http://cinema.cehorg.com/movie.php?id=2 might be vulnerable if it directly inserts id into a SQL query.
+Test for SQL Injection Vulnerability:
+
+Start with simple payloads like ' OR '1'='1 or '-- to see if the application behaves unexpectedly.
+If the application returns different data or an error, it may be vulnerable to SQL injection.
+Craft SQL Injection Payload to Extract Data:
+
+To extract Sarah's password, you might try a payload like:
+vbnet
+Copy code
+' OR 1=1 UNION SELECT username, password FROM users WHERE username='Sarah'--
+Inject this payload into a vulnerable input field or URL parameter.
+Analyze the Output:
+
+If successful, the response should include the password for Sarah.
+Question 13: Exploit the Web Application
+Task: Exploit the web application available at www.cehorg.com and enter the flag’s value at the page with page_id=84.
+
+Steps:
+
+Access the Target Web Application:
+
+Navigate to www.cehorg.com using your browser.
+Navigate to the Specific Page:
+
+Go to the page with the URL http://www.cehorg.com/?page_id=84.
+Identify Vulnerabilities:
+
+Inspect the page source and look for clues that might indicate how to submit or exploit the page.
+Common vulnerabilities include reflected XSS, SQL injection, file inclusion, or command injection.
+Submit the Flag:
+
+If there is a text input field or form, you may need to submit the correct flag. This flag could be extracted from another vulnerable point on the site or using tools like Burp Suite to intercept and modify traffic.
+Important Notes:
+Ethical Considerations: Only perform these actions in a legal and authorized environment. Unauthorized access to computer systems is illegal.
+
+
+
 
 
 
