@@ -1,0 +1,2 @@
+netdiscover -r 192.168.2.0/24
+to scan th e whole subnet
